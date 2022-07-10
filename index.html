@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- loading pyscript dependencies -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <!-- importing a python file -->
+    <py-env>
+        - paths:
+            - /sample.py
+    </py-env>
+
+    <!-- importing third party libraries -->
+    <py-env>
+        - numpy 
+    </py-env>
+
+    <title>Title: PyScript</title>
+</head>
+<body>
+    <!-- printing out a simple string -->
+    <py-script> 
+        print("Hello, World!\nThis is my first Pyscript code") 
+    </py-script> 
+    <br>
+
+    <!-- printing values using element IDs. similar to DOM -->
+    <b><p>Today is <u><label id='today'></label></u></p></b>
+    <py-script>
+        import datetime as dt
+        pyscript.write('today', dt.date.today().strftime('%A %B %d, %Y'))
+    </py-script>
+
+    <!-- creating REPL -->
+    <py-repl id="my-repl" auto-generate=true> </py-repl>
+
+    <!-- using the imported file to call functions in it -->
+    <h1>Let's print random numbers</h1>
+    <b>Doe's lucky number is <label id="lucky"></label></b>
+    <py-script>
+        from example import generate_random_number
+        pyscript.write('lucky', generate_random_number())
+    </py-script>
+
+    <!-- importing numpy -->
+    <py-script>
+        import numpy as np
+        arr = np.array([1, 2, 3, 4, 5])
+        pyscript.write(arr)
+        pyscript.write(type(arr))
+    </py-script>
+
+</body>
+</html>
